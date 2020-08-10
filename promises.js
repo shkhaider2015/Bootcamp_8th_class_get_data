@@ -71,3 +71,45 @@ watchTutorialPromise().then(
         console.log(err.name + " : " + err.message)
     }
 )
+
+// One more Promise example
+
+const recordVideoOne = new Promise((resolve, reject) => {
+    resolve("Video 1 Recorded")
+})
+const recordVideoTwo = new Promise((resolve, reject) => {
+    resolve("Video 2 Recorded")
+})
+const recordVideoThree = new Promise((resolve, reject) => {
+    resolve("Video 3 Recorded")
+})
+// if video 1 takes more time than others so others will wait
+// until video 1 process complete 
+Promise.all(
+    [
+        recordVideoOne,
+        recordVideoTwo,
+        recordVideoThree
+    ]
+).then(
+    (messages) =>
+    {
+        console.log("Promise.all() : " + messages)
+    }
+)
+
+// if we want to runs promise as soon as complete
+// when one promise complete it will return it instead of all
+// we use promise.race() instead of promise.all()
+Promise.race(
+    [
+        recordVideoOne,
+        recordVideoTwo,
+        recordVideoThree
+    ]
+).then(
+    (messages) =>
+    {
+        console.log("Promise.race() : " + messages)
+    }
+)
