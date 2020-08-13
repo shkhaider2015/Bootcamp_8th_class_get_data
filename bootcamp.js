@@ -31,4 +31,5 @@ async function postAPI()
     console.log(json, "JSON")
 }
 
+// call to postApi function
 postAPI()
